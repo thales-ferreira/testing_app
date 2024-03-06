@@ -1,0 +1,53 @@
+[
+  {
+    "question": "What is the supreme law of the land in the United States?",
+    "answers": ["The Constitution", "The Declaration of Independence", "The Bill of Rights", "The Emancipation Proclamation"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What does the First Amendment protect?",
+    "answers": ["Freedom of speech", "Right to bear arms", "Protection from unreasonable searches and seizures", "Right to a speedy trial"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the legal term for a formal accusation that a person has committed a crime?",
+    "answers": ["Indictment", "Conviction", "Arraignment", "Acquittal"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What does 'habeas corpus' mean?",
+    "answers": ["You shall have the body", "In good faith", "Let the buyer beware", "After the fact"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the highest court in the United States?",
+    "answers": ["The Supreme Court", "The Court of Appeals", "The District Court", "The State Court"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What does the Fourth Amendment protect?",
+    "answers": ["Protection from unreasonable searches and seizures", "Freedom of speech", "Right to bear arms", "Right to a speedy trial"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the legal term for a law that makes an act illegal retroactively?",
+    "answers": ["Ex post facto law", "Habeas corpus", "Stare decisis", "Amicus curiae"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What does 'stare decisis' mean?",
+    "answers": ["To stand by things decided", "You shall have the body", "In good faith", "Let the buyer beware"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What is the legal term for a friend of the court brief?",
+    "answers": ["Amicus curiae", "Habeas corpus", "Stare decisis", "Ex post facto law"],
+    "correctAnswerIndex": 0
+  },
+  {
+    "question": "What does the Sixth Amendment guarantee?",
+    "answers": ["Right to a speedy trial", "Freedom of speech", "Right to bear arms", "Protection from unreasonable searches and seizures"],
+    "correctAnswerIndex": 0
+  }
+]
+
