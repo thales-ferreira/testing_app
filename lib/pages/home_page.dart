@@ -11,10 +11,10 @@ class HomePage extends StatelessWidget {
         title: const Text('Welcome to the Quiz App!'),
         backgroundColor: Colors.blue,
       ),
-      body: Center(
+      body: const Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children: [
             QuizPrompt(),
             SizedBox(height: 20),
             QuizButton(),
@@ -50,7 +50,7 @@ class QuizButton extends StatelessWidget {
       onPressed: () {
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => QuizApp()),
+          MaterialPageRoute(builder: (context) => const QuizApp()),
         );
       },
       child: const Padding(

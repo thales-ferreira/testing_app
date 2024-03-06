@@ -6,7 +6,12 @@ class ResultPage extends StatelessWidget {
   final int timeLeft;
   final List<Question> questions;
 
-  ResultPage(this.selectedAnswers, this.timeLeft, this.questions);
+  const ResultPage({
+    Key? key, // Add this line
+    required this.selectedAnswers,
+    required this.timeLeft,
+    required this.questions,
+  }) : super(key: key); // And this line
 
   @override
   Widget build(BuildContext context) {
@@ -23,26 +28,26 @@ class ResultPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quiz Results'),
-        backgroundColor: Color(0xff38979a),
+        title: const Text('Quiz Results'),
+        backgroundColor: const Color(0xff38979a),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text(
+            const Text(
               'Congratulations!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             Text(
               'Your time was: ${timeLeft ~/ 60}:${(timeLeft % 60).toString().padLeft(2, '0')}',
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
             Text(
               'Your score is: $score/${questions.length}',
-              style: TextStyle(fontSize: 20),
+              style: const TextStyle(fontSize: 20),
             ),
-            Text(
+            const Text(
               'Your wrong answers were:',
               style: TextStyle(fontSize: 20),
             ),

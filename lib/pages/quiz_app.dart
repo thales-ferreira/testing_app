@@ -1,30 +1,35 @@
+// File: lib/pages/quiz_app.dart
+
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:testing/models/question.dart';
 import 'package:testing/pages/result_page.dart';
+import 'package:testing/widgets/quiz_widget.dart'; // Import QuizWidget
 
 class QuizApp extends StatefulWidget {
+  const QuizApp({Key? key}) : super(key: key);
   @override
-  _QuizAppState createState() => _QuizAppState();
+  QuizAppState createState() => QuizAppState();
 }
 
-class _QuizAppState extends State<QuizApp> {
+class QuizAppState extends State<QuizApp> {
   late Timer _timer;
   int _start = 20 * 60; // 20 minutes in seconds
   List<int> selectedAnswers =
       List.filled(30, -1); // Initialize with -1 for no answer selected
   List<Question> questions = [];
 
+  int get timeLeft => _start;
+
   void startTimer() {
     _timer = Timer.periodic(
-      Duration(seconds: 1),
+      const Duration(seconds: 1),
       (Timer timer) {
         if (_start == 0) {
-          setState(() {
-            timer.cancel();
-          });
+          timer.cancel();
+          // Navigate to ResultPage or show an alert
         } else {
           setState(() {
             _start--;
@@ -62,8 +67,8 @@ class _QuizAppState extends State<QuizApp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Quiz App'),
-        backgroundColor: Color(0xff5a97a9),
+        title: const Text('Quiz App'),
+        backgroundColor: const Color(0xff5a97a9),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -73,63 +78,39 @@ class _QuizAppState extends State<QuizApp> {
               value: _start / (20 * 60),
               semanticsLabel: 'Timer progress',
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Text(
               'Time left: ${_start ~/ 60}:${(_start % 60).toString().padLeft(2, '0')}',
-              style: TextStyle(fontSize: 24),
+              style: const TextStyle(fontSize: 24),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             Expanded(
               child: ListView.builder(
                 itemCount: questions.length,
                 itemBuilder: (context, questionIndex) {
-                  return Card(
-                    margin: const EdgeInsets.only(bottom: 16.0),
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            questions[questionIndex].question,
-                            style: TextStyle(
-                                fontSize: 18, fontWeight: FontWeight.bold),
-                          ),
-                          ...questions[questionIndex]
-                              .answers
-                              .asMap()
-                              .entries
-                              .map((entry) {
-                            int answerIndex = entry.key;
-                            String answer = entry.value;
-
-                            return RadioListTile<int>(
-                              title: Text(answer),
-                              value: answerIndex,
-                              groupValue: selectedAnswers[questionIndex],
-                              onChanged: (int? value) {
-                                setState(() {
-                                  selectedAnswers[questionIndex] = value!;
-                                });
-                              },
-                            );
-                          }).toList(),
-                        ],
-                      ),
-                    ),
+                  return QuizWidget(
+                    question: questions[questionIndex],
+                    selectedAnswer: selectedAnswers[questionIndex],
+                    onAnswerSelected: (int? value) {
+                      setState(() {
+                        selectedAnswers[questionIndex] = value!;
+                      });
+                    },
                   );
                 },
               ),
             ),
             ElevatedButton(
-              child: Text('Submit'),
+              child: const Text('Submit'),
               onPressed: () {
-                _timer.cancel();
-                Navigator.push(
+                Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
-                      builder: (context) =>
-                          ResultPage(selectedAnswers, _start, questions)),
+                      builder: (context) => ResultPage(
+                            selectedAnswers: selectedAnswers,
+                            timeLeft: timeLeft,
+                            questions: questions,
+                          )),
                 );
               },
             ),
