@@ -7,14 +7,6 @@ import 'package:testing/pages/result_page.dart';
 
 class QuizApp extends StatefulWidget {
   @override
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      theme: ThemeData.light(),
-    );
-  }
-
   _QuizAppState createState() => _QuizAppState();
 }
 
@@ -137,7 +129,7 @@ class _QuizAppState extends State<QuizApp> {
                   context,
                   MaterialPageRoute(
                       builder: (context) =>
-                          ResultPage(selectedAnswers, _start)),
+                          ResultPage(selectedAnswers, _start, questions)),
                 );
               },
             ),
