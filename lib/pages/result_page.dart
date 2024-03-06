@@ -39,6 +39,7 @@ class ResultPage extends StatelessWidget {
               'Congratulations!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
+            const Icon(Icons.star, size: 50, color: Color(0xff3d8784)),
             Text(
               'Your time was: ${timeLeft ~/ 60}:${(timeLeft % 60).toString().padLeft(2, '0')}',
               style: const TextStyle(fontSize: 20),
@@ -52,6 +53,16 @@ class ResultPage extends StatelessWidget {
               style: TextStyle(fontSize: 20),
             ),
             ...wrongAnswers.map((question) => Text(question)).toList(),
+            ElevatedButton(
+                onPressed: () {
+                  // Navigate to homepage
+                },
+                child: const Text('Homepage')),
+            ElevatedButton(
+                onPressed: () {
+                  // Restart the quiz
+                },
+                child: const Text('Play again'))
           ],
         ),
       ),
