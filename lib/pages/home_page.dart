@@ -33,7 +33,7 @@ class QuizPrompt extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Ready to practice?',
-      style: TextStyle(color: Color(0xff0f0a0a), fontSize: 24),
+      style: TextStyle(color: Color(0xff2e2b2b), fontSize: 24),
     );
   }
 }
@@ -46,7 +46,7 @@ class QuizButton extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         shape: CircleBorder(),
-        primary: Colors.blue, // Change the button color to blue
+        primary: Color(0xff15A4C2), // Change the button color to blue
         padding: EdgeInsets.all(52.0),
       ),
       onPressed: () {
@@ -57,7 +57,7 @@ class QuizButton extends StatelessWidget {
       },
       child: Text(
         'Do Quiz',
-        style: TextStyle(fontSize: 20),
+        style: TextStyle(color: Color(0xfffbfbfb), fontSize: 20),
       ),
     );
   }

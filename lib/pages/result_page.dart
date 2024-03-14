@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:percent_indicator/percent_indicator.dart';
 import 'package:testing/models/question.dart';
+import 'package:testing/widgets/custom_button.dart';
 import 'package:testing/pages/quiz_app.dart';
 import 'package:testing/pages/home_page.dart';
 
@@ -28,74 +30,88 @@ class ResultPage extends StatelessWidget {
       }
     }
 
+    double percent = score / questions.length;
+
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Quiz Results'),
-        backgroundColor: const Color(0xff38979a),
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            CircularPercentIndicator(
+              radius: 90.0,
+              lineWidth: 60.0,
+              animation: true,
+              percent: percent,
+              center: Text(
+                "${(percent * 100).round()}%",
+                style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.0),
+              ),
+              circularStrokeCap: CircularStrokeCap.butt,
+              progressColor: Colors.blue,
+            ),
             const Text(
               'Congratulations!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
             const Icon(Icons.star, size: 50, color: Color(0xff3d8784)),
             Text(
-              'Your time was: ${timeLeft ~/ 60}:${(timeLeft % 60).toString().padLeft(2, '0')}',
+              '$score/${questions.length}',
               style: const TextStyle(fontSize: 20),
             ),
             Text(
-              'Your score is: $score/${questions.length}',
+              '${(timeLeft ~/ 60)}:${(timeLeft % 60).toString().padLeft(2, '0')} mins left',
               style: const TextStyle(fontSize: 20),
             ),
             const Text(
-              'Your wrong answers were:',
+              'Incorrect answers:',
               style: TextStyle(fontSize: 20),
             ),
-            ...wrongAnswers.map((question) => Text(question)).toList(),
+            Expanded(
+              child: Card(
+                margin: const EdgeInsets.all(8.0),
+                child: ListView(
+                  padding: const EdgeInsets.all(8.0),
+                  children: wrongAnswers
+                      .map((question) => ListTile(
+                            contentPadding: const EdgeInsets.all(8.0),
+                            title: Container(
+                              color: const Color(0xff813631),
+                              child: Text(question,
+                                  style: const TextStyle(color: Colors.white)),
+                            ),
+                          ))
+                      .toList(),
+                ),
+              ),
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        // Navigate to homepage
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => HomePage()),
-                        );
-                      },
-                      child: const Text('Home'),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.blue, // background
-                        onPrimary: Colors.white, // foreground
-                      ),
-                    ),
+                  child: CustomButton(
+                    text: 'Home',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => HomePage()),
+                      );
+                    },
+                    backgroundColor: const Color(0xff15A4C2),
+                    foregroundColor: Colors.white,
                   ),
                 ),
                 Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const QuizApp()),
-                        );
-                      },
-                      child: const Text('Study More'),
-                      style: ElevatedButton.styleFrom(
-                        primary: Colors.white, // background
-                        onPrimary: Colors.blue, // foreground
-                        side:
-                            BorderSide(color: Colors.blue, width: 2), // border
-                      ),
-                    ),
+                  child: CustomButton(
+                    text: 'Study More',
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const QuizApp()),
+                      );
+                    },
+                    backgroundColor: Colors.white,
+                    foregroundColor: const Color(0xff15A4C2),
                   ),
                 ),
               ],

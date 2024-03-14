@@ -35,15 +35,18 @@ class _CustomRadioWidgetState extends State<CustomRadioWidget> {
           child: Container(
             margin: const EdgeInsets.all(2.0),
             decoration: BoxDecoration(
-              color: _selectedOption == index ? Colors.blue : Colors.white,
+              color:
+                  _selectedOption == index ? Color(0xff15A4C2) : Colors.white,
               borderRadius: BorderRadius.circular(4.0),
-              border: Border.all(color: Colors.blue),
+              border: Border.all(color: Color(0xff15A4C2)),
             ),
             child: ListTile(
               title: Text(
                 option,
                 style: TextStyle(
-                  color: _selectedOption == index ? Colors.white : Colors.black,
+                  color: _selectedOption == index
+                      ? (Color(0xffffffff))
+                      : Colors.black,
                 ),
               ),
               leading: Radio<int>(

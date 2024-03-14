@@ -19,7 +19,7 @@ class QuestionWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Color(0xf413153d),
+      color: Color(0xff0b5766),
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Row(
