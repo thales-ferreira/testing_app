@@ -6,7 +6,8 @@ import 'dart:async';
 import 'package:flutter/services.dart';
 import 'package:testing/models/question.dart';
 import 'package:testing/pages/result_page.dart';
-import 'package:testing/widgets/quiz_widget.dart'; // Import QuizWidget
+import 'package:testing/widgets/options_widget.dart'; // Import QuizWidget
+import 'package:testing/widgets/question_widget.dart'; // Import QuestionWidget
 
 class QuizApp extends StatefulWidget {
   const QuizApp({Key? key}) : super(key: key);
@@ -88,14 +89,24 @@ class QuizAppState extends State<QuizApp> {
               child: ListView.builder(
                 itemCount: questions.length,
                 itemBuilder: (context, questionIndex) {
-                  return QuizWidget(
-                    question: questions[questionIndex],
-                    selectedAnswer: selectedAnswers[questionIndex],
-                    onAnswerSelected: (int? value) {
-                      setState(() {
-                        selectedAnswers[questionIndex] = value!;
-                      });
-                    },
+                  return Column(
+                    children: [
+                      QuestionWidget(
+                        question: questions[questionIndex].question,
+                        category: 'Law', // Replace with your category
+                        points: 1, // Replace with your points
+                        questionNumber: questionIndex + 1,
+                      ),
+                      OptionsWidget(
+                        question: questions[questionIndex],
+                        selectedAnswer: selectedAnswers[questionIndex],
+                        onAnswerSelected: (int? value) {
+                          setState(() {
+                            selectedAnswers[questionIndex] = value!;
+                          });
+                        },
+                      ),
+                    ],
                   );
                 },
               ),

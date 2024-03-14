@@ -7,17 +7,18 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Welcome to the Quiz App!'),
-        backgroundColor: Colors.blue,
-      ),
-      body: const Center(
+      body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             QuizPrompt(),
             SizedBox(height: 20),
             QuizButton(),
+            SizedBox(height: 20),
+            Text(
+              'Good luck!',
+              style: TextStyle(color: Color(0xff090808), fontSize: 16),
+            ),
           ],
         ),
       ),
@@ -30,9 +31,9 @@ class QuizPrompt extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Text(
-      'Ready to test your knowledge?',
-      style: TextStyle(fontSize: 24),
+    return Text(
+      'Ready to practice?',
+      style: TextStyle(color: Color(0xff0f0a0a), fontSize: 24),
     );
   }
 }
@@ -44,8 +45,9 @@ class QuizButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
-        shape: const CircleBorder(),
-        backgroundColor: const Color(0xff458193),
+        shape: CircleBorder(),
+        primary: Colors.blue, // Change the button color to blue
+        padding: EdgeInsets.all(52.0),
       ),
       onPressed: () {
         Navigator.push(
@@ -53,12 +55,9 @@ class QuizButton extends StatelessWidget {
           MaterialPageRoute(builder: (context) => const QuizApp()),
         );
       },
-      child: const Padding(
-        padding: EdgeInsets.all(52.0),
-        child: Text(
-          'Take Test',
-          style: TextStyle(fontSize: 20),
-        ),
+      child: Text(
+        'Do Quiz',
+        style: TextStyle(fontSize: 20),
       ),
     );
   }
